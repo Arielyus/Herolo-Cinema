@@ -1,0 +1,20 @@
+<button mat-flat-button color="primary" (click)="onAddEditMovie(null, false)">
+  Add Movie
+</button>
+<hr>
+<ul class="list-group">
+  <li
+    *ngFor="let movie of (movieList$ | async)"
+    (click)="onAddEditMovie(movie, true)"
+    class="list-group-item list-group-item-action"
+  >
+    {{ movie.title | englishLettersOnly | titlecase }}
+    <button
+      style="float:right"
+      class="btn btn-danger btn-sm"
+      (click)="onRemoveMovie($event, movie)"
+    >
+      remove
+    </button>
+  </li>
+</ul>

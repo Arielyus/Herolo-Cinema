@@ -1,0 +1,46 @@
+<form class="form-container" #f="ngForm" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>{{ data.isEdit ? "Edit Movie" : "Add Movie" }}</h1>
+      <!-- <button (click)="log1(f)">11111</button> -->
+  <mat-form-field>
+    <input matInput formControlName="id" placeholder="Id" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="title" placeholder="Title" required />
+    <mat-error *ngIf="!f.form.controls.title.error?.stringExists && f.form.controls.title.value != ''">
+      movie already exist
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="year" placeholder="Year" required />
+    <mat-error
+      *ngIf="(!f.form.controls.year.error?.min || !f.form.controls.year.error?.max) && f.form.controls.year.value != ''"
+    >
+      year must be between 1900 and 2100
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="runtime" placeholder="Runtime" required />
+    <mat-error *ngIf="!f.form.controls.runtime.error?.pattern && f.form.controls.runtime.value != ''"
+      >numeric value only</mat-error
+    >
+    <span matSuffix>min</span>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="genre" placeholder="Genre" required/>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="director" placeholder="Director" required/>
+  </mat-form-field>
+
+  <mat-dialog-actions class="form-buttons">
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button
+      type="submit"
+      mat-flat-button
+      [disabled]="!formGroup.valid"
+      color="primary"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>
