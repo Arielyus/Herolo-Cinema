@@ -8,7 +8,9 @@ import * as MovieActions from "./actions/movie.actions";
 import { AppState } from "./app.state";
 import { SnackbarComponent } from "./components/snackbar/snackbar.component";
 
-const initMoviesList = ["the matrix", "gladiator", "interstellar"];
+const initMoviesList = ["the matrix", "gladiator", "interstellar", "pulp fiction", "fight club", "forrest gump",
+"inception", "the silence of the lambs", "spirited away", "the departed", 
+"back to the future", "terminator 2: judgment day"];
 const omdbUrl = "https://www.omdbapi.com/";
 @Injectable()
 export class AppService {
@@ -31,6 +33,7 @@ export class AppService {
         movie.year = parseInt(response.Year);
         movie.title = response.Title;
         movie.director = response.Director;
+        movie.poster = response.Poster;
 
         this.addMovie(movie);
       },

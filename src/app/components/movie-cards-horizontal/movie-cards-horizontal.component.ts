@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { MatDialog, MatDialogRef } from "@angular/material";
@@ -10,38 +10,38 @@ import * as MovieActions from "../../actions/movie.actions";
 import { RemoveModalComponent } from "../remove-modal/remove-modal.component";
 import { MovieFormComponent } from "../movie-form/movie-form.component";
 
+
 @Component({
-  selector: "movie-list",
-  templateUrl: "./movie-list.component.html",
-  styleUrls: ["./movie-list.component.css"]
+  selector: 'movie-cards-horizontal',
+  templateUrl: './movie-cards-horizontal.component.html',
+  styleUrls: ['./movie-cards-horizontal.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieCardsHorizontalComponent implements OnInit {
   movieList$: Observable<Movie[]>;
   formDialogRef: MatDialogRef<MovieFormComponent>;
   removeDialogRef: MatDialogRef<RemoveModalComponent>;
+  @ViewChild("scroll") scroll: ElementRef;
 
   constructor(
     private store: Store<AppState>,
     private appSrv: AppService,
     private dialog: MatDialog,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.movieList$ = this.store.pipe(select("Movies"));
   }
 
-  
 
-  onAddEditMovie(movie: Movie,isEdit: boolean) {
+  onAddEditMovie(movie: Movie, isEdit: boolean) {
 
 
     this.formDialogRef = this.dialog.open(MovieFormComponent, {
       width: "400px",
       height: "600px",
-      data: {movie: movie, isEdit},
+      data: { movie: movie, isEdit },
     });
 
-  
   }
 
   onRemoveMovie($event, movie) {
@@ -61,4 +61,10 @@ export class MovieListComponent implements OnInit {
       }
     });
   }
+
+  onScroll(direction){
+    let scrollVal = direction === 'left' ? -334 : 334;
+    this.scroll.nativeElement.scrollBy({top:0, left:scrollVal, behavior: 'smooth'})
+  }
+  
 }

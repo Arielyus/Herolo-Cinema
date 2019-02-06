@@ -59,8 +59,10 @@ export class MovieFormComponent implements OnInit {
       runtime: [
         this.data.movie.runtime,
         [Validators.required, Validators.pattern(/^[0-9]*$/)]
-      ]
+      ],
+      poster: [this.data.movie.poster, Validators.pattern(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)]
     });
+
   }
 
   onSubmit() {
@@ -71,7 +73,8 @@ export class MovieFormComponent implements OnInit {
       id: this.data.isEdit? this.data.movie.id : this.appSrv.generateUniqId().toString(),
       runtime: this.formGroup.get("runtime").value,
       year: this.formGroup.get("year").value,
-      director: this.formGroup.get("director").value
+      director: this.formGroup.get("director").value,
+      poster: this.formGroup.get("poster").value
     };
 
     if (this.data.isEdit)

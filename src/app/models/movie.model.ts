@@ -5,6 +5,7 @@ export class Movie {
   runtime: number;
   genre: string;
   director: string;
+  poster: string;
 
   constructor() {
     this.id = '';

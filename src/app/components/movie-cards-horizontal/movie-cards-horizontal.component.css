@@ -1,0 +1,66 @@
+.main-area {
+    height: 150%;
+}
+.scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar; 
+    min-height: 40em;
+}
+
+.scroll-btn {
+    position: absolute;
+    z-index: 1;
+    margin-top: 16em;
+    margin-bottom: auto;
+    opacity: 0.9;
+}
+
+ .flex {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    min-height: 37em;
+}
+
+.card {
+    flex: 0 0 auto;
+    margin: 2em 1em;
+    max-height: 33em;
+    
+}
+
+.card-content {
+	padding: 0.5em 0.8em 0px .8em;
+}
+
+.card-content h2 {
+	margin-top: 0;
+	/* margin-bottom: .5em; */
+	font-weight: normal;
+}
+
+.card-content p {
+	font-size: 95%;
+}
+
+.card-button {
+    visibility: hidden;
+    z-index: 1;
+    position: absolute;
+    margin: 7.3em;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+ .card:hover .card-button {
+    visibility: visible;
+    opacity: 0.9;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+img {
+    width: 18em;
+}

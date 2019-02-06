@@ -11,11 +11,12 @@ import { RemoveModalComponent } from "../remove-modal/remove-modal.component";
 import { MovieFormComponent } from "../movie-form/movie-form.component";
 
 @Component({
-  selector: "movie-list",
-  templateUrl: "./movie-list.component.html",
-  styleUrls: ["./movie-list.component.css"]
+  selector: 'movie-cards',
+  templateUrl: './movie-cards.component.html',
+  styleUrls: ['./movie-cards.component.css']
 })
-export class MovieListComponent implements OnInit {
+export class MovieCardsComponent implements OnInit {
+
   movieList$: Observable<Movie[]>;
   formDialogRef: MatDialogRef<MovieFormComponent>;
   removeDialogRef: MatDialogRef<RemoveModalComponent>;
@@ -24,24 +25,22 @@ export class MovieListComponent implements OnInit {
     private store: Store<AppState>,
     private appSrv: AppService,
     private dialog: MatDialog,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.movieList$ = this.store.pipe(select("Movies"));
   }
 
-  
 
-  onAddEditMovie(movie: Movie,isEdit: boolean) {
+  onAddEditMovie(movie: Movie, isEdit: boolean) {
 
 
     this.formDialogRef = this.dialog.open(MovieFormComponent, {
       width: "400px",
       height: "600px",
-      data: {movie: movie, isEdit},
+      data: { movie: movie, isEdit },
     });
 
-  
   }
 
   onRemoveMovie($event, movie) {
@@ -61,4 +60,5 @@ export class MovieListComponent implements OnInit {
       }
     });
   }
+
 }
