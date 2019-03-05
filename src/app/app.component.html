@@ -1,24 +1,29 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-12 py-md-3 pl-md-5 bd-content">
-      <button mat-flat-button color="primary" (click)="onAddEditMovie(null, false)">
-        Add Movie
-      </button>
-      <div class="btn-group" style="float:right" role="group" aria-label="Basic example">
-        <button type="button" (click)="viewMode='list'" class="btn btn-secondary">
-          <i class="fas fa-list-ul"></i>
+      <div class="bar">
+        <button mat-flat-button color="primary" (click)="onAddEditMovie(null, false)">
+          Add Movie
         </button>
-        <button type="button" (click)="viewMode='cards'" class="btn btn-secondary">
-          <i class="fas fa-th"></i>
-        </button>
-        <button type="button" (click)="viewMode='cards-horizontal'" class="btn btn-secondary">
-          <i class="fas fa-grip-horizontal"></i>
-        </button>
+        <mat-form-field class="search-bar">
+          <input matInput #filter placeholder="Filter Movies">
+        </mat-form-field>
+        <mat-button-toggle-group #group="matButtonToggleGroup">
+          <mat-button-toggle (click)="viewMode='list'">
+            <mat-icon class="fas fa-list-ul" aria-hidden="true"></mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle (click)="viewMode='cards'">
+            <mat-icon class="fas fa-th" aria-hidden="true"></mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle (click)="viewMode='cards-horizontal'">
+            <mat-icon class="fas fa-grip-horizontal" aria-hidden="true"></mat-icon>
+          </mat-button-toggle>
+        </mat-button-toggle-group>
       </div>
       <hr>
-      <movie-list *ngIf="viewMode==='list'"></movie-list>
-      <movie-cards *ngIf="viewMode==='cards'"></movie-cards>
-      <movie-cards-horizontal *ngIf="viewMode==='cards-horizontal'"></movie-cards-horizontal>
+      <movie-list *ngIf="viewMode==='list'" [filterBy]='filter.value'></movie-list>
+      <movie-cards *ngIf="viewMode==='cards'" [filterBy]='filter.value'></movie-cards>
+      <movie-cards-horizontal *ngIf="viewMode==='cards-horizontal'" [filterBy]='filter.value'></movie-cards-horizontal>
       <router-outlet></router-outlet>
     </div>
   </div>

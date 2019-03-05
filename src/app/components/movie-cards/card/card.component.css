@@ -1,36 +1,11 @@
-.main-area {
-    height: 150%;
-}
-.scroll {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar; 
-    min-height: 40em;
-}
-
-.scroll-btn {
-    position: absolute;
-    z-index: 1;
-    margin-top: 16em;
-    margin-bottom: auto;
-    opacity: 0.9;
-}
-
- .flex {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: auto;
-    min-height: 37em;
-}
 
 .card {
     flex: 0 0 auto;
     margin: 2em 1em;
     max-height: 33em;
-    
+    min-height: 33em;
 }
+
 
 .card-content {
 	padding: 0.5em 0.8em 0px .8em;
@@ -62,5 +37,13 @@
 }
 
 img {
-    width: 18em;
+    object-fit: cover;
+    max-height: 27em;
+}
+
+.thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 27em;
 }

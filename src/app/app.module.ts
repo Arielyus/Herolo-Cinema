@@ -25,9 +25,10 @@ import { reducer as reducer } from './reducers/movie.reducer';
 import { RemoveModalComponent } from './components/remove-modal/remove-modal.component';
 import { MovieFormComponent } from './components/movie-form/movie-form.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
-import { EnglishLettersOnlyPipe } from './shared/pipes';
+import { EnglishLettersOnlyPipe, FilterMoviesPipe } from './shared/pipes';
 import { MovieCardsComponent } from './components/movie-cards/movie-cards.component';
-import { MovieCardsHorizontalComponent } from './components/movie-cards-horizontal/movie-cards-horizontal.component';
+import { MovieCardsHorizontalComponent } from './components/movie-cards/movie-cards-horizontal/movie-cards-horizontal.component';
+import { CardComponent } from './components/movie-cards/card/card.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,8 @@ import { MovieCardsHorizontalComponent } from './components/movie-cards-horizont
     EnglishLettersOnlyPipe,
     MovieCardsComponent,
     MovieCardsHorizontalComponent,
+    CardComponent,
+    FilterMoviesPipe
   ],
   imports: [
     BrowserModule,

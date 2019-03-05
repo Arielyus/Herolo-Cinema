@@ -1,7 +1,7 @@
 
 <ul class="list-group">
   <li
-    *ngFor="let movie of (movieList$ | async)"
+    *ngFor="let movie of (movieList$ | async) | filterMovies: filterBy"
     (click)="onAddEditMovie(movie, true)"
     class="list-group-item list-group-item-action"
     matRipple

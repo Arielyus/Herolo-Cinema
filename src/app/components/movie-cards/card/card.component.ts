@@ -1,36 +1,30 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Store, select } from "@ngrx/store";
-import { Observable } from "rxjs";
 import { MatDialog, MatDialogRef } from "@angular/material";
 
-import { Movie } from "../../models/movie.model";
-import { AppState } from "../../app.state";
-import { AppService } from "../../app.service";
-import * as MovieActions from "../../actions/movie.actions";
-import { RemoveModalComponent } from "../remove-modal/remove-modal.component";
-import { MovieFormComponent } from "../movie-form/movie-form.component";
-
+import { Movie } from "../../../models/movie.model";
+import { AppState } from "../../../app.state";
+import { AppService } from "../../../app.service";
+import * as MovieActions from "../../../actions/movie.actions";
+import { RemoveModalComponent } from "../../remove-modal/remove-modal.component";
+import { MovieFormComponent } from "../../movie-form/movie-form.component";
 
 @Component({
-  selector: 'movie-cards-horizontal',
-  templateUrl: './movie-cards-horizontal.component.html',
-  styleUrls: ['./movie-cards-horizontal.component.css']
+  selector: 'card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
 })
-export class MovieCardsHorizontalComponent implements OnInit {
-  movieList$: Observable<Movie[]>;
+export class CardComponent {
+
   formDialogRef: MatDialogRef<MovieFormComponent>;
   removeDialogRef: MatDialogRef<RemoveModalComponent>;
-  @ViewChild("scroll") scroll: ElementRef;
+  @Input() movie: Movie;
 
   constructor(
     private store: Store<AppState>,
     private appSrv: AppService,
     private dialog: MatDialog,
   ) { }
-
-  ngOnInit() {
-    this.movieList$ = this.store.pipe(select("Movies"));
-  }
 
 
   onAddEditMovie(movie: Movie, isEdit: boolean) {
@@ -62,9 +56,4 @@ export class MovieCardsHorizontalComponent implements OnInit {
     });
   }
 
-  onScroll(direction){
-    let scrollVal = direction === 'left' ? -334 : 334;
-    this.scroll.nativeElement.scrollBy({top:0, left:scrollVal, behavior: 'smooth'})
-  }
-  
 }

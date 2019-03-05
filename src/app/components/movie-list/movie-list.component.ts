@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { MatDialog, MatDialogRef } from "@angular/material";
@@ -19,6 +19,7 @@ export class MovieListComponent implements OnInit {
   movieList$: Observable<Movie[]>;
   formDialogRef: MatDialogRef<MovieFormComponent>;
   removeDialogRef: MatDialogRef<RemoveModalComponent>;
+  @Input() filterBy;
 
   constructor(
     private store: Store<AppState>,
@@ -30,11 +31,7 @@ export class MovieListComponent implements OnInit {
     this.movieList$ = this.store.pipe(select("Movies"));
   }
 
-  
-
   onAddEditMovie(movie: Movie,isEdit: boolean) {
-
-
     this.formDialogRef = this.dialog.open(MovieFormComponent, {
       width: "400px",
       height: "600px",
@@ -54,7 +51,6 @@ export class MovieListComponent implements OnInit {
 
     this.removeDialogRef.afterClosed().subscribe(selection => {
       if (selection) {
-        selection === "true";
         this.store.dispatch(new MovieActions.RemoveMovie(movie.id));
 
         this.appSrv.openSnackBar("Movie Removed");

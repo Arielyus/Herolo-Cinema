@@ -1,0 +1,12 @@
+<main class="main-area">
+  <div>
+    <button mat-fab class="scroll-btn" (click)="onScroll('left')" color="white"><i class="fas fa-chevron-circle-left"></i></button>
+    <button mat-fab class="scroll-btn" (click)="onScroll('right')" color="white" style="right: 1em;">
+      <i class="fas fa-chevron-circle-right"></i></button>
+  </div>
+  <div class="centered scroll">
+    <section #scroll class="cards flex">
+      <card *ngFor="let movie of (movieList$ | async)| filterMovies: filterBy" [movie]="movie"></card>
+    </section>
+  </div>
+</main>

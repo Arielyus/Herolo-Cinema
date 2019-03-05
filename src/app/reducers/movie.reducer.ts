@@ -7,22 +7,17 @@ export function reducer(state: Movie[] = [], action: MoiveActions.Actions) {
       return [...state, action.payload];
 
     case MoiveActions.REMOVE_MOVIE:
-      state.splice(
-        state.findIndex(function(i) {
-          return i.id === action.id;
-        }),
-        1
-      );
-      return state;
+      return state.filter(movie => movie.id != action.id);
 
     case MoiveActions.UPDATE_MOVIE:
-      const index = state.findIndex(function(i) {
+      const index = state.findIndex(function (i) {
         return i.id === action.payload.id;
       });
 
-      state[index] = action.payload;
+      const newState = state.map(movie => movie);
+      newState[index] = action.payload;
 
-      return state;
+      return newState;
 
     default:
       return state;

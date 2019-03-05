@@ -1,0 +1,27 @@
+.main-area {
+    height: 150%;
+}
+
+.scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar; 
+    min-height: 40em;
+}
+
+.scroll-btn {
+    position: absolute;
+    z-index: 1;
+    margin-top: 16em;
+    margin-bottom: auto;
+    opacity: 0.9;
+}
+
+ .flex {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    min-height: 37em;
+}
